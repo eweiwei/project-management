@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layouts :: head"> 
+	</head>
+	
+	<body>
+	
+	<nav th:replace="layouts :: navbar"></nav>
+
+		<div class="container">
+			<hr>
+			<h3>Tickets Directory</h3>
+			<hr>
+			
+			<!--  Add New Project Button -->
+			<a th:href="@{/tickets/new}"
+				class="btn btn-primary btn-sm mb-3"> 
+				New Ticket 
+			</a>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Ticket Title</th>
+						<th>Ticket Stage</th>
+                        <th>Ticket Post Date</th>
+                        <th>Ticket Deadline Date</th>
+                        <th>Project</th>
+						<th>Action</th>
+						<th>Details</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr th:each="aTicket : ${tickets}">
+						<td th:text="${aTicket.title}"/>
+						<td th:text="${aTicket.stage}"/>
+                        <td th:text="${aTicket.postDate}"/>
+                        <td th:text="${aTicket.deadlineDate}"/>
+                        <td th:text="${aTicket.stage}"/>
+						<td>
+							<a th:href="@{/tickets/update(id=${aTicket.ticketId})}"
+								class="btn btn-info btn-sm">
+								Update
+							</a>
+							
+							<a th:href="@{/tickets/delete(id=${aTicket.ticketId})}"
+								class="btn btn-danger btn-sm"
+								onClick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+								Delete
+							</a>
+							<a th:href="@{/comments/ticket(id=${aTicket.ticketId})}"
+								class="btn btn-danger btn-sm">
+								Comment
+							</a>
+						</td>
+						<td>
+							<a th:href="@{/tickets/details(id=${aTicket.ticketId})}" class="btn btn-danger btn-sm">
+								Details
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			
+			</table>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr> 
+						<th> Project Name </th>
+						<th> Ticket Title </th>
+					</tr>
+				</thead>
+				<tbody> 
+					<tr th:each="ticketProject : ${ticketProject}">
+						<td th:text="${ticketProject.projectName}"/>
+						<td th:text="${ticketProject.ticketTitle}"/>
+					</tr>
+				</tbody>
+			
+			</table>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layouts :: head"> 
+	</head>
+	
+	<body>
+	
+	<nav th:replace="layouts :: navbar"></nav>
+
+		<div class="container">
+			<hr>
+			<h3 th:text="${project.name}"> Details</h3>
+			<hr>
+			
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Ticket Title</th>
+						<th>Ticket Stage</th>
+						<th>Details</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr th:each="aTick : ${allTickets}">
+						<td th:text="${aTick.title}"/>
+						<td th:text="${aTick.stage}"/>
+						<td>
+							<a th:href="@{/tickets/details(id=${aTick.ticketId})}">
+								Ticket Details
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Employee First Name</th>
+						<th>Employee Last Name</th>
+						<th>Details</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr th:each="anEmp : ${allEmployees}">
+						<td th:text="${anEmp.firstName}"/>
+						<td th:text="${anEmp.lastName}"/>
+						<td>
+							<a th:href="@{/employees/details(id=${anEmp.employeeId})}">
+								Employee Details
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4 th:text="${project.description}"></h4>
+			<table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Comment Title</th>
+						<th>Comment Description</th>
+						<th>Comment Post Date</th>
+						<th>Posted By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="comment : ${allComments}">
+                        <td th:text="${comment.title}"/>
+						<td th:text="${comment.description}"/>
+						<td th:text="${comment.postDate}"/>
+						<td th:text="${comment.employee.username}"/>
+                    </tr>
+                </tbody>
+            </table>
+		</div>
+	</body>
+	
+</html>

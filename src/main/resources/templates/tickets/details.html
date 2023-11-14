@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layouts :: head"> 
+	</head>
+	
+	<body>
+	
+	<nav th:replace="layouts :: navbar"></nav>
+
+		<div class="container">
+			<hr>
+			<h3 th:text="${ticket.title}"> Details</h3>
+			<hr>
+
+            <table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Ticket Title</th>
+						<th>Ticket Stage</th>
+                        <th>Ticket Post Date</th>
+                        <th>Ticket Deadline Date</th>
+                        <th>Project</th>
+						<th>Action</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr>
+						<td th:text="${ticket.title}"/>
+						<td th:text="${ticket.description}"/>
+                        <td th:text="${ticket.postDate}"/>
+                        <td th:text="${ticket.deadlineDate}"/>
+                        <td th:text="${ticket.stage}"/>
+						<td>
+							<a th:href="@{/tickets/update(id=${ticketticketId})}"
+								class="btn btn-info btn-sm">
+								Update
+							</a>
+							
+							<a th:href="@{/tickets/delete(id=${ticket.ticketId})}"
+								class="btn btn-danger btn-sm"
+								onClick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+								Delete
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			
+			</table>
+			
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Employee First Name</th>
+						<th>Employee Last Name</th>
+						<th>Details</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr>
+						<td th:text="${allEmployees.firstName}"/>
+						<td th:text="${allEmployees.lastName}"/>
+						<td>
+							<a th:href="@{/employees/details(id=${allEmployees.employeeId})}">
+								Employee Details
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			
+			</table>
+			<hr>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Projects</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="aPro : ${allProjects}">
+                        <td>
+                            <a th:text="${aPro.name}" th:href="@{/projects/details(id=${aPro.projectId})}"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+			<h4 th:text="${ticket.description}"></h4>
+			<table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Comment Title</th>
+						<th>Comment Description</th>
+						<th>Comment Post Date</th>
+						<th>Posted By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="comment : ${allComments}">
+                        <td th:text="${comment.title}"/>
+						<td th:text="${comment.description}"/>
+						<td th:text="${comment.postDate}"/>
+						<td th:text="${comment.employee.username}"/>
+                    </tr>
+                </tbody>
+            </table>       
+		</div>
+	</body>
+	
+</html>

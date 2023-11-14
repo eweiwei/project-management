@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layouts :: head"> 
+	</head>
+	
+	<body>
+	
+	<nav th:replace="layouts :: navbar"></nav>
+
+		<div class="container">
+			<hr>
+			<h3 th:text="${employee.firstName}"></h3>
+            <h3 th:text="${employee.lastName}"></h3>
+            <h3 th:text="${employee.email}"></h3>
+            <h3 th:text="${employee.role}"></h3>
+			<hr>
+			
+			<!-- <table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Employee First Name</th>
+						<th>Employee Last Name</th>
+                        <th>Employee Email</th>
+                        <th>Employee Role</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<tr>
+						<td th:text="${employee.firstName}"/>
+						<td th:text="${employee.lastName}"/>
+                        <td th:text="$(employee.email}"/>
+                        <td th:text="${employee.role}"/>
+					</tr>
+				</tbody>
+			</table> -->
+            
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Projects</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="aPro : ${allProjects}">
+                        <td>
+                            <a th:text="${aPro.name}" th:href="@{/projects/details(id=${aPro.projectId})}"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+		</div>
+	</body>
+	
+</html>

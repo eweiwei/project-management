@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<div class="container">
+		<form th:action="@{/tickets/save-update(id=${ticket.ticketId})}" th:object="${ticket}" method="POST">
+		
+			<!-- (startDate=${project.startDate})(endDate=${project.endDate}) -->
+
+			<div class="form-group row">
+                <input type="text" placeholder="Title" th:field="${ticket.title}">
+            </div>
+        
+            <div class="form-group row">
+                <textarea type="text" placeholder="Enter Ticket Description" th:field="${ticket.description}"></textarea>
+            </div>
+			
+			<div class="form-group row">
+				<select th:field="${ticket.stage}">
+					<option th:value="NOTSTARTED"> Not Started</option>
+					<option th:value="INPROGRESS"> In Progress</option>
+					<option th:value="COMPLETED"> Completed</option>
+				</select>
+			</div>
+			
+			<div class="form-group row">
+                <select th:field="*{projects}" multiple="multiple">
+                    <option th:each = "project : ${allProjects}"
+                            th:value = "${project.projectId}"
+                            th:text = "${project.name}">
+                    </option>
+                </select>
+            </div>
+    
+            Ticket Post Date:
+            <div class="form-group row">
+                <input id="dp3" type="text" class="mb-4 col-2 col-xs-4" value="Post Date" th:field="${ticket.postDate}">
+            </div>
+            
+            
+            Ticket Deadline Date:
+            <div class="form-group row">
+                <input id="dp4" type="text" class="mb-4 col-2 col-xs-4" value="Deadline Date" th:field="${ticket.deadlineDate}">
+            </div>
+            
+            <script type="text/javascript">
+                  $('#dp3').datepicker();
+                  $('#dp4').datepicker();
+              </script>
+		
+		<button class="btn btn-info col-2" type="submit">Enter Ticket</button>
+		
+		</form>
+	</div>
+	
+</body>
+
+</html>

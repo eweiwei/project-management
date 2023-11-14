@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header">
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" th:href="@{/css/formatting.css}">
+	
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+
+	<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#"> Project IO</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <form action="/logout" class="form-signin" method="get">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+	  </form>
+	
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/employees}">Employees</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/projects}">Projects</a>
+	      </li>
+	      <li class="nav-item">
+			  <a th:href="@{/tickets}" class="nav-link">Tickets</a>
+		  </li>
+		  <li class="nav-item">
+			  <a th:href="@{/projects/your-projects}" class="nav-link">Your Projects</a>
+		  </li>
+	    </ul>
+	  </div>
+	</nav>
+
+	<!-- Custom fonts for this template-->
+	<!-- <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+		
+	<link th:href="@{/css/sb-admin-2.css}" rel="stylesheet">
+
+	<link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet"> -->
+
+	<!-- Bootstrap core JavaScript-->
+	<!-- <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script> -->
+
+	<!-- Core plugin JavaScript-->
+	<!-- <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script> -->
+
+	<!-- Custom scripts for all pages-->
+	<!-- <script th:src="@{/js/sb-admin-2.min.js}"></script> -->
+
+	<!-- Page level plugins -->
+	<!-- <script th:src="@{/vendor/chart.js/Chart.min.js}"></script> -->
+
+	<!-- Page level custom scripts -->
+	<!-- <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+	<script th:src="@{/js/demo/chart-pie-demo.js}"></script> -->
+
+	<!-- Page level plugins -->
+	<!-- <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script> -->
+
+	<!-- Page level custom scripts -->
+	<!-- <script th:src="@{/js/demo/datatables-demo.js}"></script> -->
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+	
+	
+		<form th:action="@{/comments/save/project}" th:object="${comment}" method="POST">
+		
+		<!--  This will be used to bind to the employee that was clicked on (USED FOR UPDATES)-->
+		<input type="hidden" th:field="${comment.commentId}"/>
+		<select th:field="*{employee}" type="hidden">
+			<option 
+					th:value = "${employees.employeeId}"
+					selected>
+			</option>
+		</select>
+		<select th:field="*{project}" type="hidden">
+			<option 
+					th:value = "${projects.projectId}"
+					selected>
+			</option>
+		</select>
+		<div class="form-group row">
+			<input type="text" placeholder="Title" th:field="${comment.title}">
+		</div>
+	
+		<div class="form-group row">
+			<textarea type="text" placeholder="Enter Comment" th:field="${comment.description}"></textarea>
+		</div>
+
+		Ticket Post Date:
+		<div class="form-group row">
+			<input id="dp3" type="date" class="mb-4 col-2 col-xs-4" value="Post Date" th:field="${comment.postDate}">
+		</div>
+		
+		<script type="text/javascript">
+	      	$('#dp3').datepicker();
+	    </script>
+		
+		<button class="btn btn-info col-2" type="submit">Post Comment</button>
+		
+		</form>
+	</div>
+	
+</body>
+
+</html>
